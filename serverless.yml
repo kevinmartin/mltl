@@ -1,0 +1,85 @@
+service: tasks
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+#  stage: dev
+#  region: us-east-1
+
+iamRoleStatements:
+  - Effect: "Allow"
+    Action:
+      - "dynamodb:GetItem"
+      - "dynamodb:PutItem"
+    Resource: "arn:aws:dynamodb:${region}:*:table/${service}-${stage}"
+
+package:
+  exclude:
+    - README.md
+    - .*
+
+functions:
+  list:
+    handler: list.handler
+    events:
+      - http:
+          path: tasks
+          method: get
+  update:
+    handler: update.handler
+    events:
+      - http:
+          path: tasks/{id}
+          method: patch
+  add:
+    handler: add.handler
+    events:
+      - http:
+          path: tasks
+          method: post
+  delete:
+    handler: delete.handler
+    events:
+      - http:
+          path: tasks/{id}
+          method: delete
+  cron:
+    handler: list.handler
+    events:
+      - schedule: cron(0 0 * * * *)
+
+resources:
+  Resources:
+    TasksTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${service}-${stage}
+        AttributeDefinitions:
+          - AttributeName: user
+            AttributeType: S
+          - AttributeName: description
+            AttributeType: S
+          - AttributeName: priority
+            AttributeType: N
+          - AttributeName: completed
+            AttributeType: S
+        KeySchema:
+          - AttributeName: user
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    DynamoDBIamPolicy:
+      Type: AWS::IAM::Policy
+      DependsOn: TasksTable
+      Properties:
+        PolicyName: lambda-dynamodb
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+              Resource: arn:aws:dynamodb:*:*:table/tasks
+        Roles:
+          - Ref: IamRoleLambdaExecution
