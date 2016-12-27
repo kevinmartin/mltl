@@ -1,18 +1,16 @@
 {
 	"type": "object",
-	"title": "A task",
+	"title": "Task",
+	"description": "A task",
 	"properties": {
 		"user": {
-			"type": "string",
-			"minLength": 5,
-			"maxLength": 254,
-			"title": "User",
-			"description": "User's email address"
+			"$ref": "#/definitions/User"
 		},
 		"description": {
 			"type": "string",
 			"minLength": 1,
-			"title": "Description of the task"
+			"title": "Description",
+			"description": "Description of the task"
 		},
 		"priority": {
 			"type": "integer",

@@ -1,0 +1,7 @@
+{
+	"type": "string",
+	"minLength": 5,
+	"maxLength": 254,
+	"title": "User",
+	"description": "User's email address"
+}

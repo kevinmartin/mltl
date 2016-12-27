@@ -1,0 +1,16 @@
+{
+	"type": "object",
+	"title": "UUID Response",
+	"description": "Object with UUID",
+	"properties": {
+		"id": {
+			"type": "string",
+			"minLength": 36,
+			"maxLength": 36,
+			"title": "UUID"
+		}
+	},
+	"required": [
+		"id"
+	]
+}

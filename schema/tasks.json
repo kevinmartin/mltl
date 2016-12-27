@@ -1,0 +1,8 @@
+{
+	"type": "array",
+	"title": "Tasks",
+	"description": "A list of tasks",
+	"items": {
+		"$ref": "#/definitions/Task"
+	}
+}
