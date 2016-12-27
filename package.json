@@ -16,7 +16,6 @@
   "homepage": "https://github.com/KevinMartin/mltl#readme",
   "dependencies": {
     "aws-sdk": "^2.7.19",
-    "serverless-plugin-swagger-export": "^0.5.5",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
