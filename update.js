@@ -46,7 +46,7 @@ module.exports.handler = (event, context, cb) => {
 				'Access-Control-Allow-Origin': '*'
 			},
 			body: JSON.stringify({
-				id: params.Item.id
+				id: params.Key.id
 			})
 		});
 	});

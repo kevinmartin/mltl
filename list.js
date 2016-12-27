@@ -7,7 +7,7 @@ const dynamo = new AWS.DynamoDB.DocumentClient();
 module.exports.handler = (event, context, cb) => {
 	const params = {
 		TableName: 'tasks-dev',
-		KeyConditionExpression: '#user = :user',
+		FilterExpression: '#user = :user',
 		ExpressionAttributeNames: {
 			'#user': 'user'
 		},
@@ -16,7 +16,7 @@ module.exports.handler = (event, context, cb) => {
 		}
 	};
 
-	return dynamo.query(params, (error, data) => {
+	return dynamo.scan(params, (error, data) => {
 		if (error) {
 			console.error(error);
 			cb(new Error('[500] Internal Server Error'));
@@ -28,7 +28,7 @@ module.exports.handler = (event, context, cb) => {
 			headers: {
 				'Access-Control-Allow-Origin': '*'
 			},
-			body: JSON.stringify(data)
+			body: JSON.stringify(data.Items)
 		});
 	});
 };

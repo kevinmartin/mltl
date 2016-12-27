@@ -12,7 +12,7 @@ module.exports.handler = (event, context, cb) => {
 		}
 	};
 
-	return dynamo.update(params, error => {
+	return dynamo.delete(params, error => {
 		if (error) {
 			console.error(error);
 			cb(new Error('[500] Internal Server Error'));
@@ -25,7 +25,7 @@ module.exports.handler = (event, context, cb) => {
 				'Access-Control-Allow-Origin': '*'
 			},
 			body: JSON.stringify({
-				id: params.Item.id
+				id: params.Key.id
 			})
 		});
 	});
