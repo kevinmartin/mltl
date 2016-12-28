@@ -43,10 +43,18 @@ $ AWS_REGION=us-east-1 MAIL_FROM=[email] npm run test-cov
 
 The coverage report is found in the `./coverage/` directory after running the command.
 
+Tests are also run on TravisCI: https://travis-ci.org/KevinMartin/mltl
+
+Coverage Reports are posted to Coveralls: https://coveralls.io/github/KevinMartin/mltl?branch=master
+
 ## Swagger + API Gateway Extentions
+[View in Swagger UI](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/KevinMartin/mltl/master/swagger.gateway.json#/default)
+
 The Swagger + API Gateway Extensions file is located in [swagger.gateway.json](swagger.gateway.json).
 
 ## Swagger Plugin
+[View in Swagger UI](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/KevinMartin/mltl/master/swagger.plugin.json#/default)
+
 I also created my own custom Serverless Framework plugin for the app which also outputs a valid Swagger definition file. The plugin is located in the `.serverless_plugins` directory.
 
 The Swagger Plugin file is located in [swagger.plugin.json](swagger.plugin.json).
