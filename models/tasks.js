@@ -3,7 +3,8 @@
 const AWS	= require('aws-sdk');
 const uuid	= require('uuid/v4');
 
-const dynamo = new AWS.DynamoDB.DocumentClient({
+const allowedFields	= ['user', 'description', 'priority', 'completed'];
+const dynamo		= new AWS.DynamoDB.DocumentClient({
 	params: {
 		TableName: 'tasks-dev'
 	}
@@ -12,7 +13,7 @@ const dynamo = new AWS.DynamoDB.DocumentClient({
 function createUpdateExpression(body) {
 	const updates = [];
 
-	for (const field of Tasks.allowedFields) {
+	for (const field of allowedFields) {
 		if (field in body) {
 			updates.push(`${field} = :${field}`);
 		}
@@ -22,30 +23,6 @@ function createUpdateExpression(body) {
 }
 
 module.exports = class Tasks {
-	static get allowedFields() { return ['user', 'description', 'priority', 'completed']; }
-
-	static filter(expressionOrColumn, value) {
-		let params;
-
-		if (typeof expressionOrColumn === 'string') {
-			params = {
-				FilterExpression: expressionOrColumn
-			};
-		} else {
-			params = {
-				FilterExpression: '#col = :value',
-				ExpressionAttributeNames: {
-					'#col': expressionOrColumn
-				},
-				ExpressionAttributeValues: {
-					':value': value
-				}
-			};
-		}
-
-		return dynamo.scan(params).promise().then(data => data.Items);
-	}
-
 	constructor(idOrData) {
 		if (typeof idOrData === 'string') {
 			this.data = {
@@ -60,6 +37,28 @@ module.exports = class Tasks {
 		if (!this.data.id) {
 			this.data.id = uuid();
 		}
+	}
+
+	static filter(expressionOrColumn, value) {
+		let params;
+
+		if (value) {
+			params = {
+				FilterExpression: '#col = :value',
+				ExpressionAttributeNames: {
+					'#col': expressionOrColumn
+				},
+				ExpressionAttributeValues: {
+					':value': value
+				}
+			};
+		} else {
+			params = {
+				FilterExpression: expressionOrColumn
+			};
+		}
+
+		return dynamo.scan(params).promise().then(data => data.Items);
 	}
 
 	get id() { return this.data.id; }

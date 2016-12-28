@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "ML Serverless Assignment - Task List App",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --harmony-async-await --reporter spec ./test/*.js ./test/*/*.js",
+    "test-cov": "nyc --reporter=lcov npm test"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,8 @@
   "homepage": "https://github.com/KevinMartin/mltl#readme",
   "dependencies": {
     "aws-sdk": "^2.7.19",
+    "mocha": "^3.1.2",
+    "nyc": "^8.4.0",
     "uuid": "^3.0.1"
   },
   "devDependencies": {

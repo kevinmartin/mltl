@@ -14,7 +14,9 @@ module.exports = class Email {
 					Data: email.subject
 				},
 				Body: {
-					Text: email.body
+					Text: {
+						Data: email.body
+					}
 				}
 			}
 		}).promise();
