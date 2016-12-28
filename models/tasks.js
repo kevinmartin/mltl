@@ -10,16 +10,24 @@ const dynamo		= new AWS.DynamoDB.DocumentClient({
 	}
 });
 
-function createUpdateExpression(body) {
+function createUpdateExpression(body, params) {
+	params.ExpressionAttributeNames		= {};
+	params.ExpressionAttributeValues	= {};
+
 	const updates = [];
 
 	for (const field of allowedFields) {
 		if (field in body) {
-			updates.push(`${field} = :${field}`);
+			updates.push(`#${field}Col = :${field}Value`);
+
+			params.ExpressionAttributeNames[`#${field}Col`]		= field;
+			params.ExpressionAttributeValues[`:${field}Value`]	= body[field];
 		}
 	}
 
-	return `set ${updates.join(', ')}`;
+	params.UpdateExpression = `set ${updates.join(', ')}`;
+
+	return params;
 }
 
 module.exports = class Tasks {
@@ -76,18 +84,11 @@ module.exports = class Tasks {
 	}
 
 	update() {
-		return dynamo.update({
+		return dynamo.update(createUpdateExpression(this.data, {
 			Key: {
 				id: this.id
-			},
-			UpdateExpression: createUpdateExpression(this.data),
-			ExpressionAttributeValues: {
-				':user': this.data.user,
-				':description': this.data.description,
-				':priority': this.data.priority,
-				':completed': this.data.completed
 			}
-		}).promise();
+		})).promise();
 	}
 
 	delete() {

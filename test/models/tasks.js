@@ -69,6 +69,7 @@ describe('models/tasks.js', () => {
 
 	it('should succeed in updating a task', () => {
 		const task = new Task({
+			user: 'test@test.com',
 			id: 'test',
 			priority: 6
 		});
