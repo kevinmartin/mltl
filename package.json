@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "ML Serverless Assignment - Task List App",
   "scripts": {
+    "lint": "eslint *.js **/*.js",
     "test": "mocha --harmony-async-await --reporter spec ./test/*.js ./test/*/*.js",
-    "test-cov": "nyc --reporter=lcov npm test"
+    "test-cov": "nyc --reporter=lcov npm test",
+    "test-cov-report": "npm run test-cov && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
+    "coveralls": "^2.11.15",
     "eslint": "^3.12.2",
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0"
