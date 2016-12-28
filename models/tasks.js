@@ -6,7 +6,7 @@ const uuid	= require('uuid/v4');
 const allowedFields	= ['user', 'description', 'priority', 'completed'];
 const dynamo		= new AWS.DynamoDB.DocumentClient({
 	params: {
-		TableName: 'tasks-dev'
+		TableName: process.env.TABLE_NAME
 	}
 });
 

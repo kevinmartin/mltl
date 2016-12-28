@@ -18,6 +18,8 @@ provider:
   name: aws
   runtime: nodejs4.3
   region: us-east-1
+  environment:
+    TABLE_NAME: ${self:service}-${self:provider.stage}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
