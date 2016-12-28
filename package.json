@@ -4,7 +4,7 @@
   "description": "ML Serverless Assignment - Task List App",
   "scripts": {
     "lint": "eslint *.js **/*.js",
-    "test": "mocha --harmony-async-await --reporter spec ./test/*.js ./test/*/*.js",
+    "test": "mocha --reporter spec ./test/*.js ./test/*/*.js",
     "test-cov": "nyc --reporter=lcov npm test",
     "test-cov-report": "npm run test-cov && nyc report --reporter=text-lcov | coveralls"
   },
