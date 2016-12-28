@@ -1,4 +1,9 @@
 # mltl
+[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
+[![Build Status](https://travis-ci.org/KevinMartin/mltl.svg?branch=master)](https://travis-ci.org/KevinMartin/mltl)
+[![Coverage Status](https://coveralls.io/repos/github/KevinMartin/mltl/badge.svg?branch=master)](https://coveralls.io/github/KevinMartin/mltl?branch=master)
+![dependencies](https://david-dm.org/KevinMartin/mltl.svg)
+
 ML Serverless Assignment - Task List App
 
 This app uses the [Serverless Framework](https://serverless.com).

@@ -19,14 +19,14 @@
   "homepage": "https://github.com/KevinMartin/mltl#readme",
   "dependencies": {
     "aws-sdk": "^2.7.19",
-    "mocha": "^3.1.2",
-    "nyc": "^8.4.0",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
     "coveralls": "^2.11.15",
     "eslint": "^3.12.2",
     "eslint-config-airbnb-base": "^11.0.0",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0",
+    "nyc": "^10.0.0"
   }
 }
