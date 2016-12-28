@@ -6,7 +6,7 @@ custom:
     domain: tiliq.com
     mailFrom: tasks@tiliq.com
   swag:
-    host: ambphvsfob.execute-api.us-east-1.amazonaws.com
+    host: duki4yrm34.execute-api.us-east-1.amazonaws.com
     definitions:
       UUID: ${file(./schema/uuid.json)}
       Task: ${file(./schema/task.json)}

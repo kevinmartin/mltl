@@ -5,7 +5,7 @@
     "description": "ML Serverless Assignment - Task List App",
     "version": "1.0.0"
   },
-  "host": "ambphvsfob.execute-api.us-east-1.amazonaws.com",
+  "host": "duki4yrm34.execute-api.us-east-1.amazonaws.com",
   "basePath": "/dev",
   "schemes": [
     "https"
