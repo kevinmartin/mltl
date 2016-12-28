@@ -16,6 +16,7 @@ $ serverless deploy --verbose
 ## Usage
 ```bash
 $ git clone git@github.com:KevinMartin/mltl.git
+$ cd mltl
 $ npm install
 $ npm install -g serverless
 $ serverless deploy
