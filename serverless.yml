@@ -12,6 +12,7 @@ custom:
       Task: ${file(./schema/task.json)}
       Tasks: ${file(./schema/tasks.json)}
       User: ${file(./schema/user.json)}
+      Error: ${file(./schema/error.json)}
 
 provider:
   name: aws
@@ -60,8 +61,12 @@ functions:
                   $ref: "#/definitions/Tasks"
               '400':
                 description: Bad Request. Most likely `user` parameter missing.
+                schema:
+                  $ref: "#/definitions/Error"
               '500':
                 description: Internal Server Error.
+                schema:
+                  $ref: "#/definitions/Error"
   update:
     handler: update.handler
     events:
@@ -82,8 +87,12 @@ functions:
                   $ref: "#/definitions/UUID"
               '400':
                 description: Bad Request.
+                schema:
+                  $ref: "#/definitions/Error"
               '500':
                 description: Internal Server Error.
+                schema:
+                  $ref: "#/definitions/Error"
   add:
     handler: add.handler
     events:
@@ -102,8 +111,12 @@ functions:
                   $ref: "#/definitions/UUID"
               '400':
                 description: Bad Request.
+                schema:
+                  $ref: "#/definitions/Error"
               '500':
                 description: Internal Server Error.
+                schema:
+                  $ref: "#/definitions/Error"
   delete:
     handler: delete.handler
     events:
@@ -123,8 +136,12 @@ functions:
                   $ref: "#/definitions/UUID"
               '400':
                 description: Bad Request.
+                schema:
+                  $ref: "#/definitions/Error"
               '500':
                 description: Internal Server Error.
+                schema:
+                  $ref: "#/definitions/Error"
   cron:
     handler: cron.handler
     environment:

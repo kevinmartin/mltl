@@ -44,10 +44,16 @@
             }
           },
           "400": {
-            "description": "Bad Request. Most likely `user` parameter missing."
+            "description": "Bad Request. Most likely `user` parameter missing.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "500": {
-            "description": "Internal Server Error."
+            "description": "Internal Server Error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -83,10 +89,16 @@
             }
           },
           "400": {
-            "description": "Bad Request."
+            "description": "Bad Request.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "500": {
-            "description": "Internal Server Error."
+            "description": "Internal Server Error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -130,10 +142,16 @@
             }
           },
           "400": {
-            "description": "Bad Request."
+            "description": "Bad Request.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "500": {
-            "description": "Internal Server Error."
+            "description": "Internal Server Error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -167,10 +185,16 @@
             }
           },
           "400": {
-            "description": "Bad Request."
+            "description": "Bad Request.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "500": {
-            "description": "Internal Server Error."
+            "description": "Internal Server Error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -241,6 +265,15 @@
       "maxLength": 254,
       "title": "User",
       "description": "User's email address"
+    },
+    "Error": {
+      "title": "Error Schema",
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
     }
   }
 }

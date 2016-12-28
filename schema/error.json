@@ -1,0 +1,9 @@
+{
+	"title": "Error Schema",
+	"type": "object",
+	"properties": {
+		"message": {
+			"type": "string"
+		}
+	}
+}
