@@ -19,6 +19,7 @@
   "homepage": "https://github.com/KevinMartin/mltl#readme",
   "dependencies": {
     "aws-sdk": "^2.7.19",
+    "jsonschema": "^1.1.1",
     "uuid": "^3.0.1"
   },
   "devDependencies": {

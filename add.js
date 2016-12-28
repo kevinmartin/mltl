@@ -1,10 +1,17 @@
 'use strict';
 
-const Task = require('./models/tasks.js');
+const Task		= require('./models/tasks.js');
+const schema	= require('./utils/schema.js');
 
 module.exports.handler = (event, context, cb) => {
-	const body	= JSON.parse(event.body);
-	const task	= new Task(body);
+	const body = JSON.parse(event.body);
+
+	if (!schema.isValid(body, schema.Task)) {
+		cb(new Error('[400] Bad Request'));
+		return;
+	}
+
+	const task = new Task(body);
 
 	task.add().then(() => cb(null, {
 		statusCode: 200,
