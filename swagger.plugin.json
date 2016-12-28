@@ -38,7 +38,10 @@
         ],
         "responses": {
           "200": {
-            "description": "A list of tasks for the specified user."
+            "description": "A list of tasks for the specified user.",
+            "schema": {
+              "$ref": "#/definitions/Tasks"
+            }
           },
           "400": {
             "description": "Bad Request. Most likely `user` parameter missing."
@@ -74,7 +77,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Task added successfully."
+            "description": "Task added successfully.",
+            "schema": {
+              "$ref": "#/definitions/UUID"
+            }
           },
           "400": {
             "description": "Bad Request."
@@ -118,7 +124,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Task updated successfully."
+            "description": "Task updated successfully.",
+            "schema": {
+              "$ref": "#/definitions/UUID"
+            }
           },
           "400": {
             "description": "Bad Request."
@@ -152,7 +161,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Task deleted successfully."
+            "description": "Task deleted successfully.",
+            "schema": {
+              "$ref": "#/definitions/UUID"
+            }
           },
           "400": {
             "description": "Bad Request."
@@ -165,21 +177,35 @@
     }
   },
   "definitions": {
+    "UUID": {
+      "type": "object",
+      "title": "UUID Response",
+      "description": "Object with UUID",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 36,
+          "maxLength": 36,
+          "title": "UUID"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
     "Task": {
       "type": "object",
-      "title": "A task",
+      "title": "Task",
+      "description": "A task",
       "properties": {
         "user": {
-          "type": "string",
-          "minLength": 5,
-          "maxLength": 254,
-          "title": "User",
-          "description": "User's email address"
+          "$ref": "#/definitions/User"
         },
         "description": {
           "type": "string",
           "minLength": 1,
-          "title": "Description of the task"
+          "title": "Description",
+          "description": "Description of the task"
         },
         "priority": {
           "type": "integer",
@@ -200,6 +226,21 @@
         "description",
         "priority"
       ]
+    },
+    "Tasks": {
+      "type": "array",
+      "title": "Tasks",
+      "description": "A list of tasks",
+      "items": {
+        "$ref": "#/definitions/Task"
+      }
+    },
+    "User": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 254,
+      "title": "User",
+      "description": "User's email address"
     }
   }
 }
