@@ -47,6 +47,7 @@ functions:
       - http:
           path: tasks
           method: get
+          cors: true
           request:
             parameters:
               querystrings:
@@ -72,6 +73,7 @@ functions:
       - http:
           path: tasks/{id}
           method: patch
+          cors: true
           request:
             parameters:
               paths:
@@ -98,6 +100,7 @@ functions:
       - http:
           path: tasks
           method: post
+          cors: true
           request:
             parameters:
               body: Task
@@ -122,6 +125,7 @@ functions:
       - http:
           path: tasks/{id}
           method: delete
+          cors: true
           request:
             parameters:
               paths:
