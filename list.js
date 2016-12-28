@@ -1,34 +1,16 @@
 'use strict';
 
-const AWS = require('aws-sdk');
-
-const dynamo = new AWS.DynamoDB.DocumentClient();
+const Tasks = require('./models/tasks.js');
 
 module.exports.handler = (event, context, cb) => {
-	const params = {
-		TableName: 'tasks-dev',
-		FilterExpression: '#user = :user',
-		ExpressionAttributeNames: {
-			'#user': 'user'
+	Tasks.filter('user', event.queryStringParameters.user).then(tasks => cb(null, {
+		statusCode: 200,
+		headers: {
+			'Access-Control-Allow-Origin': '*'
 		},
-		ExpressionAttributeValues: {
-			':user': event.queryStringParameters.user
-		}
-	};
-
-	return dynamo.scan(params, (error, data) => {
-		if (error) {
-			console.error(error);
-			cb(new Error('[500] Internal Server Error'));
-			return;
-		}
-
-		cb(null, {
-			statusCode: 200,
-			headers: {
-				'Access-Control-Allow-Origin': '*'
-			},
-			body: JSON.stringify(data.Items)
-		});
+		body: JSON.stringify(tasks)
+	}), error => {
+		console.error(error);
+		cb(new Error('[500] Internal Server Error'));
 	});
 };
